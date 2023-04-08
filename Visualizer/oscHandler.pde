@@ -77,10 +77,10 @@ void keyReleased() {
       eSound = true;
     } 
     else {
-      wSound = false;
+      eSound = false;
     }
     OscMessage keyMessage = new OscMessage("/e");
-    keyMessage.add(str(wSound));
+    keyMessage.add(str(eSound));
     oscClient.send(keyMessage, pureDataAddress);
   }
   if (key == 'r' || key == 'R') {
@@ -91,7 +91,7 @@ void keyReleased() {
       rSound = false;
     }
     OscMessage keyMessage = new OscMessage("/r");
-    keyMessage.add(str(wSound));
+    keyMessage.add(str(rSound));
     oscClient.send(keyMessage, pureDataAddress);
   }
   if (key == 't' || key == 'T') {
@@ -102,7 +102,7 @@ void keyReleased() {
       tSound = false;
     }
     OscMessage keyMessage = new OscMessage("/t");
-    keyMessage.add(str(wSound));
+    keyMessage.add(str(tSound));
     oscClient.send(keyMessage, pureDataAddress);
   }
   if (key == 'y' || key == 'Y') {
@@ -113,7 +113,7 @@ void keyReleased() {
       ySound = false;
     }
     OscMessage keyMessage = new OscMessage("/y");
-    keyMessage.add(str(wSound));
+    keyMessage.add(str(ySound));
     oscClient.send(keyMessage, pureDataAddress);
   }
   if (key == 'u' || key == 'U') {
@@ -124,7 +124,7 @@ void keyReleased() {
       uSound = false;
     }
     OscMessage keyMessage = new OscMessage("/u");
-    keyMessage.add(str(wSound));
+    keyMessage.add(str(uSound));
     oscClient.send(keyMessage, pureDataAddress);
   }
   if (key == 'i' || key == 'I') {
@@ -135,7 +135,7 @@ void keyReleased() {
       iSound = false;
     }
     OscMessage keyMessage = new OscMessage("/i");
-    keyMessage.add(str(wSound));
+    keyMessage.add(str(iSound));
     oscClient.send(keyMessage, pureDataAddress);
   }
   

@@ -43,7 +43,7 @@ void oscEvent(OscMessage oscMessage) {
     oscMessage.get(4).floatValue(),
     oscMessage.get(5).floatValue()
   );*/
-  println(oscMessage.get(0).floatValue(), frameCount);
+  //println(oscMessage.get(0).floatValue(), frameCount);
   
   if(oscMessage.checkAddrPattern("/one")) {
     println("hola", frameCount);

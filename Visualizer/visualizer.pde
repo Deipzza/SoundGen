@@ -89,12 +89,15 @@ void draw() {
   */
   
   if (frameCount % 12 == 0) {
+    //println(receive);
     for (int j = 0; j < receive.length; j++) {
       notes[j] = receive[j];
+      receive[j] = 0;
     }
   }
   
   else{
+    println(receive);
     for (int j = 0; j < receive.length; j++) {
       notes[j] = 0;
     }
