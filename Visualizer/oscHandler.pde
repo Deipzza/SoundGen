@@ -7,76 +7,46 @@ NetAddress pureDataAddress;
 boolean qSound = false;
 boolean wSound = false;
 boolean eSound = false;
-int number = 0;
-float x;
-float y;
-float speed = 4;
+boolean rSound = false;
+boolean tSound = false;
+boolean ySound = false;
+boolean uSound = false;
+boolean iSound = false;
 
-void setup() {
-  size(400, 400);
-  background(0);
-  
-  x = 20;
-  y = height/2;
-  
+void createConnections() {
   oscClient = new OscP5(this, 11111);
   pureDataAddress = new NetAddress("localhost", 11112);
 }
 
-void draw() {
-  background(0);
-  circle(x, y, 40);
-  
-  x += speed;
-  
-  if( x >= width || x < 0){
-    speed *= -1;
-  }
-}
-
 void oscEvent(OscMessage oscMessage) {
-  /*println(
-    oscMessage.get(0).floatValue(),
-    oscMessage.get(1).floatValue(),
-    oscMessage.get(2).floatValue(),
-    oscMessage.get(3).floatValue(),
-    oscMessage.get(4).floatValue(),
-    oscMessage.get(5).floatValue()
-  );*/
-  println(oscMessage.get(0).floatValue(), frameCount);
-  
-  if(oscMessage.checkAddrPattern("/one")) {
-    println("hola", frameCount);
-  } else if(oscMessage.checkAddrPattern("/two")) {
-    println("adios", frameCount);
+  if(oscMessage.checkAddrPattern("/q")) {
+    receive[0] = int(oscMessage.get(0).floatValue());
+  } else if(oscMessage.checkAddrPattern("/w")) {
+    receive[1] = int(oscMessage.get(0).floatValue());
+  } else if(oscMessage.checkAddrPattern("/e")) {
+    receive[2] = int(oscMessage.get(0).floatValue());
+  } else if(oscMessage.checkAddrPattern("/r")) {
+    receive[3] = int(oscMessage.get(0).floatValue());
+  } else if(oscMessage.checkAddrPattern("/t")) {
+    receive[4] = int(oscMessage.get(0).floatValue());
+  } else if(oscMessage.checkAddrPattern("/y")) {
+    receive[5] = int(oscMessage.get(0).floatValue());
+  } else if(oscMessage.checkAddrPattern("/u")) {
+    receive[6] = int(oscMessage.get(0).floatValue());
+  } else if(oscMessage.checkAddrPattern("/i")) {
+    receive[7] = int(oscMessage.get(0).floatValue());
   }
+    
+  // println(receive);
 }
-
-
 
 void keyReleased() {
   if (key == '1') {
-    /*if(qSound == false) {
-      qSound = true;
-    }
-    else {
-      qSound = false;
-    }*/
     OscMessage keyMessage = new OscMessage("/one");
-    //OscMessage keyMessage.add("q");
-    //keyMessage.add(str(qSound));
     oscClient.send(keyMessage, pureDataAddress);
   }
   if (key == '2') {
-    /*if(qSound == false) {
-      qSound = true;
-    }
-    else {
-      qSound = false;
-    }*/
     OscMessage keyMessage = new OscMessage("/two");
-    //OscMessage keyMessage.add("q");
-    //keyMessage.add(str(qSound));
     oscClient.send(keyMessage, pureDataAddress);
   }
   
@@ -88,7 +58,6 @@ void keyReleased() {
       qSound = false;
     }
     OscMessage keyMessage = new OscMessage("/q");
-    //OscMessage keyMessage.add("q");
     keyMessage.add(str(qSound));
     oscClient.send(keyMessage, pureDataAddress);
   }
@@ -104,8 +73,8 @@ void keyReleased() {
     oscClient.send(keyMessage, pureDataAddress);
   }
   if (key == 'e' || key == 'E') {
-    if(wSound == false) {
-      wSound = true;
+    if(eSound == false) {
+      eSound = true;
     } 
     else {
       wSound = false;
@@ -115,55 +84,55 @@ void keyReleased() {
     oscClient.send(keyMessage, pureDataAddress);
   }
   if (key == 'r' || key == 'R') {
-    if(wSound == false) {
-      wSound = true;
+    if(rSound == false) {
+      rSound = true;
     } 
     else {
-      wSound = false;
+      rSound = false;
     }
     OscMessage keyMessage = new OscMessage("/r");
     keyMessage.add(str(wSound));
     oscClient.send(keyMessage, pureDataAddress);
   }
   if (key == 't' || key == 'T') {
-    if(wSound == false) {
-      wSound = true;
+    if(tSound == false) {
+      tSound = true;
     } 
     else {
-      wSound = false;
+      tSound = false;
     }
     OscMessage keyMessage = new OscMessage("/t");
     keyMessage.add(str(wSound));
     oscClient.send(keyMessage, pureDataAddress);
   }
   if (key == 'y' || key == 'Y') {
-    if(wSound == false) {
-      wSound = true;
+    if(ySound == false) {
+      ySound = true;
     } 
     else {
-      wSound = false;
+      ySound = false;
     }
     OscMessage keyMessage = new OscMessage("/y");
     keyMessage.add(str(wSound));
     oscClient.send(keyMessage, pureDataAddress);
   }
   if (key == 'u' || key == 'U') {
-    if(wSound == false) {
-      wSound = true;
+    if(uSound == false) {
+      uSound = true;
     } 
     else {
-      wSound = false;
+      uSound = false;
     }
     OscMessage keyMessage = new OscMessage("/u");
     keyMessage.add(str(wSound));
     oscClient.send(keyMessage, pureDataAddress);
   }
   if (key == 'i' || key == 'I') {
-    if(wSound == false) {
-      wSound = true;
+    if(iSound == false) {
+      iSound = true;
     } 
     else {
-      wSound = false;
+      iSound = false;
     }
     OscMessage keyMessage = new OscMessage("/i");
     keyMessage.add(str(wSound));

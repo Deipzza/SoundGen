@@ -1,5 +1,6 @@
 int [] notes = {0, 0, 0, 0, 0, 0, 0, 0};
-int[] receive = {42, 38, 36, 36, 47, 69, 80, 84};
+int[] receive = {0, 0, 0, 0, 0, 0, 0, 0};
+//int[] receive = {42, 38, 36, 36, 47, 69, 80, 84};
 //int[] receive = {0, 38, 36, 36, 0, 0, 0, 0};
 //int[] receive = {42, 47, 69, 0, 0, 0, 0, 0};
 //int[] receive = {0, 0, 0, 0, 0, 0, 80, 84};
@@ -8,7 +9,7 @@ float scoreLow = 0;
 float scoreMid = 0;
 float scoreHi = 0;
 float intensity = 5;
-float scoreGlobal = 1*scoreLow + 1*scoreMid + 1*scoreHi;
+float scoreGlobal = 1 * scoreLow + 1 * scoreMid + 1 * scoreHi;
 
 float oldScoreLow = scoreLow;
 float oldScoreMid = scoreMid;
@@ -28,8 +29,7 @@ Line[] lines;
 // Bordes
 int nbBorders = 512;
 
-void setup()
-{
+void setup() {
   
   // Trabajaremos en el espacio 3D
   fullScreen(P3D);
@@ -69,29 +69,33 @@ void setup()
   
   //Fondo
   background(0);
+  
+  // OSC
+  createConnections();
 }
 
-// E este proyecto el color se representa como
+// En este proyecto el color se representa como
 // - Rojo: graves
 // - Verde: medios
 // - Azul: agudos
 // La opacidad esta determinada por la intensidad (volumen)
 
-void draw(){
-  println(scoreLow);
+void draw() {
+  /*println(scoreLow);
   println(scoreMid);
   println(scoreHi);
   println(scoreGlobal);
   println("");
+  */
   
-  if (frameCount%120 == 0){
-    for (int j = 0; j < receive.length; j++){
+  if (frameCount % 12 == 0) {
+    for (int j = 0; j < receive.length; j++) {
       notes[j] = receive[j];
     }
   }
   
   else{
-    for (int j = 0; j < receive.length; j++){
+    for (int j = 0; j < receive.length; j++) {
       notes[j] = 0;
     }
   }
