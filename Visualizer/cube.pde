@@ -18,16 +18,22 @@ class Cube{
     z = random(minZ, maxZ);
     
     // Rotacion inicial aleatoria
+    /*
     rotX = random(0, 1);
     rotY = random(0, 1);
     rotZ = random(0, 1);
+
+    */
+    rotX = 0.1;
+    rotY = 0.1;
+    rotZ = 0.1;
   }
   
   // Funcion para mostrar los cubos
   void display(float scoreLow, float scoreMid, float scoreHi, float intensity, float scoreGlobal){
     // Seleccion del color de los cubos
-    color displayColor = color(scoreLow*0.67, scoreMid*0.67, scoreHi*0.67, intensity*5);
-    fill(displayColor, 255);
+    color displayColor = color(scoreLow*0.67, scoreMid*0.67, scoreHi*0.67, intensity*6);
+    fill(displayColor,255);
     
     // Seleccion del color del borde de los cubos
     color strokeColor = color(255, 150-(20*intensity));
@@ -41,9 +47,9 @@ class Cube{
     translate(x, y, z);
     
     // Calcular la rotación en funcion de la intensidad del cubo
-    sumRotX += intensity*(rotX/100);
-    sumRotY += intensity*(rotY/100);
-    sumRotZ += intensity*(rotZ/100);
+    sumRotX += intensity*2*(rotX/100);
+    sumRotY += intensity*2*(rotY/100);
+    sumRotZ += intensity*2*(rotZ/100);
     
     // Aplicacion de la rotacion
     rotateX(sumRotX);
