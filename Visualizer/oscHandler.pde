@@ -4,6 +4,7 @@ import oscP5.*;
 OscP5 oscClient;
 NetAddress pureDataAddress;
 
+// Key-sound state controllers
 boolean qSound = false;
 boolean wSound = false;
 boolean eSound = false;
@@ -22,6 +23,7 @@ void createConnections() {
 }
 
 void oscEvent(OscMessage oscMessage) {
+  // Check the key being received by PureData
   if(oscMessage.checkAddrPattern("/q")) {
     receive[0] = int(oscMessage.get(0).floatValue());
   } else if(oscMessage.checkAddrPattern("/w")) {
@@ -45,11 +47,10 @@ void oscEvent(OscMessage oscMessage) {
   } else if(oscMessage.checkAddrPattern("/d")) {
     receive[2] = int(oscMessage.get(0).floatValue());
   }
-    
-  // println(receive);
 }
 
 void keyReleased() {
+  // Change song depending on key pressed
   if (key == '1') {
     OscMessage keyMessage = new OscMessage("/one");
     oscClient.send(keyMessage, pureDataAddress);
@@ -59,6 +60,7 @@ void keyReleased() {
     oscClient.send(keyMessage, pureDataAddress);
   }
   
+  // Toggle rhythms depending on key pressed
   if (key == 'q' || key == 'Q') {
     if(qSound == false) {
       qSound = true;
