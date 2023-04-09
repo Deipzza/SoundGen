@@ -11,6 +11,8 @@ Primer proyecto para la asignatura Creación multimedia.
 
 ## **Idea.**
 
+https://user-images.githubusercontent.com/83037028/230801716-35a464c1-8617-4666-bfe8-97b6d40dccfc.mp4
+
 ### **1. Looping songs.**
 
 A David desde hace algunos años le ha gustado una forma de hacer música conocida como *"looping songs"*, que consiste en grabar cierto tiempo de un ritmo, para luego ponerlo a reproducir de fondo mientras se graba otro, luego repetir este proceso hasta tener una base con varios ritmos para tocar la melodía principal sobre esta.
