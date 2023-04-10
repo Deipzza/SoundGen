@@ -42,7 +42,7 @@ En el video mencionado anteriormente entregan un código de Processing ya hecho,
 
 El acercamiento realizado consiste en tomar el valor numérico de las notas que componen cada cancion en PureData y enviarlas a procesing cada vez que alguna varíe, así en processing se tendrá información numérica muy básica sobre el sonido que se está reproduciendo actualmente. Partiendo de esa información, se aplican multiples transformaciones a través de funciones que nos permiten convertirla en información más compleja y suficiente para poder presentar un efecto visual llamativo en el visualizador de audio. 
 
-A continuación se explica brevemente los aspectos más importantes sobre la manipulación de las notas recibidas de PureData. La explicación detallada sobre como se realiza el proceso anteriormente descrito puede verse de mejor manera en el codigo y los comentarios del archivo "Visualizer.pd"
+A continuación se explica brevemente los aspectos más importantes sobre la manipulación de las notas recibidas de PureData. La explicación detallada sobre como se realiza el proceso puede verse de mejor manera en el codigo y los comentarios del archivo "Visualizer.pd"
 
 * Se obtienen en un arreglo los valores numéricos de las notas reproducidas. Si una nota está apagada o no está sonando se le asigna 0.
 * Separamos las notas en distintos tipos: bajos, medios y altos.
