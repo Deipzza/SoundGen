@@ -4,7 +4,7 @@ import oscP5.*;
 OscP5 oscClient;
 NetAddress pureDataAddress;
 
-// Key-sound state controllers
+// Controladores de estado del sonido de cada tecla
 boolean qSound = false;
 boolean wSound = false;
 boolean eSound = false;
@@ -17,13 +17,18 @@ boolean aSound = false;
 boolean sSound = false;
 boolean dSound = false;
 
+// Establecer la conexión con PureData
 void createConnections() {
   oscClient = new OscP5(this, 11111);
   pureDataAddress = new NetAddress("localhost", 11112);
 }
 
+// Recepción de los mensajes enviados por PureData
 void oscEvent(OscMessage oscMessage) {
-  // Check the key being received by PureData
+  /* Verificar la tecla (ritmo) enviada por PureData.
+  El valor recibido es añadido al arreglo receive para reproducir
+  los sonidos.
+  */
   if(oscMessage.checkAddrPattern("/q")) {
     receive[0] = int(oscMessage.get(0).floatValue());
   } else if(oscMessage.checkAddrPattern("/w")) {
@@ -49,8 +54,9 @@ void oscEvent(OscMessage oscMessage) {
   }
 }
 
+// Los mensajes se envían cuando una tecla es presionada y soltada.
 void keyReleased() {
-  // Change song depending on key pressed
+  // Cambiar la canción dependiendo del número presionado
   if (key == '1') {
     OscMessage keyMessage = new OscMessage("/one");
     oscClient.send(keyMessage, pureDataAddress);
@@ -60,7 +66,9 @@ void keyReleased() {
     oscClient.send(keyMessage, pureDataAddress);
   }
   
-  // Toggle rhythms depending on key pressed
+  /* Cambiar los ritmos dependiendo de la tecla presionada.
+  Se le envía a PureData una ruta dependiendo de la tecla.
+  */
   if (key == 'q' || key == 'Q') {
     if(qSound == false) {
       qSound = true;
