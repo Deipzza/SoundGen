@@ -11,21 +11,25 @@ class Line{
   
   // Constructor
   Line(float x, float y, float sizeX, float sizeY){
-    // Determinar posicion
+    // Posicion
     this.x = x;
     this.y = y;
     
     // Pofundidad aleatoria
     this.z = random(minZ, maxZ);
     
-    // Determinar tamaño
+    // Tamaño
     this.sizeX = sizeX;
     this.sizeY = sizeY;
   }
   
   // Funcion de visualizacion de lineas
-  void display(float scoreLow, float scoreMid, float scoreHi, float intensity, float scoreGlobal){
-    // Color determinado por las notas (bajas, medias y altas) y opacidad determinada por el volumen global
+  void display(float scoreLow, float scoreMid, float scoreHi, float volume, float scoreGlobal){
+    // Seleccion del color de los cubos
+    // Red = scoreLow
+    // Green = scoreMid
+    // Blue = scoreHi
+    // tamaño = volume 
     color displayColor = color(scoreLow*0.67, scoreMid*0.67, scoreHi*0.67, scoreGlobal);
     
     // Primera linea, que varia en funcion de la intensidad
@@ -33,32 +37,30 @@ class Line{
     fill(displayColor, ((scoreGlobal-5)/1000)*(255+(z/25)));
     noStroke();
     
+    // Creacion de una matriz de transformacion para ampliaciones y traslaciones
     pushMatrix();
     
-    // Desplazamiento
-    translate(x,y,z);
+    translate(x,y,z); // Desplazamiento
     
-    // Aumento
-    if (intensity > 100) intensity = 100;
-    scale(sizeX*(intensity/100), sizeY*(intensity/100), 20);
+    // Aumento de escala en funcion del volumen
+    if (volume > 100) volume = 100;
+    scale(sizeX*(volume/100), sizeY*(volume/100), 20);
     
-    // Creacion de la caja
+    // Creacion de "linea" 
     box(1);
     popMatrix();
     
-    // Segunda linea, siempre tiene el mismo tamaño
+    // Segunda linea, siempre tiene el mismo tamaño, color menos intenso que la primera
     displayColor = color(scoreLow*0.5, scoreMid*0.5, scoreHi*0.5, scoreGlobal);
     fill(displayColor, (scoreGlobal/5000)*(255+(z/25)));
-    //Matrice de transformation
+    
+    // Creacion de una matriz de transformacion para ampliaciones
     pushMatrix();
+
+    translate(x, y, z);       // Desplazamiento
+    scale(sizeX, sizeY, 10);  // Tamaño fijo
     
-    // Desplazamiento
-    translate(x, y, z);
-    
-    // Aumento
-    scale(sizeX, sizeY, 10);
-    
-    // Creacion de la caja
+    // Creacion de la "Linea"
     box(1);
     popMatrix();
     
