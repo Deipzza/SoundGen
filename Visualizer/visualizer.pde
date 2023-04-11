@@ -24,7 +24,6 @@ float scoreMid = 0;
 float scoreHi = 0;
 
 float scoreGlobal = 1 * scoreLow + 1 * scoreMid + 1 * scoreHi; // Puntaje global
-float intensity = 5; // No se utiliza pero me da miedo borrarla por si se rompe algo
 
 // Puntajes del frame anterior, se utilizan para suavizar el efecto
 float oldScoreLow = scoreLow;
@@ -89,7 +88,7 @@ void draw() {
   // Cada 12 frames (200ms) se toman los valores numéricos recibidos de PureData
   // y se asignan al arreglo notes.
   // Se deja un rango de 3 frames ya que hay cierto retraso en el envío de los datos.
-  // Sospechamos que es debido a que no se pueden ejecutar multiples intrucciones al tiempo
+  // Sospechamos que es debido a que no se pueden ejecutar multiples intrucciones al mismo tiempo
   // y aveces se mandan notas en tiempos iguales.
   int frame = frameCount;
   if (frame % 12 >= 0 && frame % 12 <= 3) {
@@ -171,6 +170,7 @@ void draw() {
   for(int i = 0; i < nbCubes; i++)
   {
     // Cubos que representan los tonos bajos
+    // Tendrán colores rojos
     if(i%3 == 0){
       // Los scores representarán cada uno de los parámetros de un color en el espacio RGB
       // La intensidad se determina basada en el score del tono respectivo
@@ -179,11 +179,13 @@ void draw() {
       cubes[i].display(scoreLow, 0, 0, intensity, scoreGlobal);
     }
     // Cubos que representan los tonos medios
+    // Tendrán colores verdes
     else if(i%3 == 1){
       int intensity = intensityMap(scoreMid);
       cubes[i].display(0, scoreMid, 0, intensity, scoreGlobal);
     }
     // Cubos que representan los tonos altos
+    // Tendrán colores azules
     else{
       int intensity = intensityMap(scoreHi);
       cubes[i].display(0, 0, scoreHi, intensity, scoreGlobal);
